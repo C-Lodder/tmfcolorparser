@@ -77,7 +77,7 @@ class TMFColorParser
 	{
 		$str         = $this->parseManialinks($str, $showLinks);
 		$str         = str_replace('$L', '$l', $str);
-		$this->links = array();
+		$this->links = [];
 		$linkidx     = 0;
 		$chunks      = explode('$l', $str);
 
@@ -148,7 +148,7 @@ class TMFColorParser
 
 	public function parseManialinks($str, $showLinks = true)
 	{
-		$this->manialinks = array();
+		$this->manialinks = [];
 		$str              = str_replace('$H', '$h', $str);
 		$linkidx          = 0;
 		$chunks           = explode('$h', $str);
@@ -448,7 +448,7 @@ class TMFColorParser
 		$str    = $this->parseLinks($str, false);
 		$chunks = explode('$', $str);
 
-		$result = array();
+		$result = [];
 
 		if ($chunks[0])
 		{
