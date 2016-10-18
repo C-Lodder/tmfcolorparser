@@ -33,7 +33,7 @@ class TMFColorParser
 	public function getStyledString($string, $match, $col, $wide, $narrow, $caps, $italic, $stripColors)
 	{
 		$string = substr($string, strlen($match));
-		$string = trim ($string);
+		$string = trim($string);
 
 		if ($caps)
 		{
@@ -422,7 +422,6 @@ class TMFColorParser
 				$italic     = false;
 				$chunks[$i] = $this->getStyledString($chunks[$i], $matches[0], $col, $wide, $narrow, $caps, $italic, $stripColors);
 			}
-
 		}
 
 		for ($i = 1; $i < count($chunks); $i++)
@@ -549,7 +548,7 @@ class TMFColorParser
 
 	public function get_rgb($hex)
 	{
-		$hex_array = array(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A' => 10, 'B' => 11, 'C' => 12, 'D' => 13, 'E' => 14, 'F' => 15);
+		$hex_array = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 'A' => 10, 'B' => 11, 'C' => 12, 'D' => 13, 'E' => 14, 'F' => 15];
 		$hex = str_replace('#', '', strtoupper($hex));
 
 		if (($length = strlen($hex)) == 3)
@@ -558,7 +557,7 @@ class TMFColorParser
 			$length = 6;
 		}
 
-		if ($length != 6 or strlen(str_replace(array_keys($hex_array), '', $hex)))
+		if ($length != 6 || strlen(str_replace(array_keys($hex_array), '', $hex)))
 		{
 			return null;
 		}
@@ -583,7 +582,7 @@ class TMFColorParser
 		$color .= (strlen($g) < 2 ? 0 : '') . $g;
 		$color .= (strlen($b) < 2 ? 0 : '') . $b;
 
-		return '#'.$color;
+		return '#' . $color;
 	}
 
 	/**
@@ -605,7 +604,7 @@ class TMFColorParser
      * @param boolean $stripColors Strip out the colors or not.
      * @param String $stripTags
      */
-	public function drawStyledString($src_img,$size, $x, $y , $color, $font, $text, $stripColors = false, $stripTags = '')
+	public function drawStyledString($src_img, $size, $x, $y, $color, $font, $text, $stripColors = false, $stripTags = '')
 	{
 		if (strtolower($stripTags) == 'all')
 		{
@@ -660,7 +659,7 @@ class TMFColorParser
 			imagettftext($src_img, $size, 0, $x + $x_offset, $y, $usedCol, $fontUsed, $chunks[$i]['text']);
 
 			$bbox = imagettfbbox($size, 0, $fontUsed, $chunks[$i]['text']);
-			$x_offset += $bbox[2]+2;
+			$x_offset += $bbox[2] + 2;
 		}
 	}
 
