@@ -2,7 +2,7 @@
 /**
  * TMFColorParser v2.0.0-beta
  *
- * @copyright   2016 Charlie Lodder
+ * @copyright   2017 Charlie Lodder
  * @license     GNU GPL v2 or - at your option - any later version
  *
  * @original    by oorf|fuckfish (fish@stabb.de)
@@ -20,6 +20,8 @@ class TMFColorParser
 
 	public $forceBrighten = null;
 
+	public $convert = null;
+
 	public $alwaysDrawFontShadows = null;
 
 	public function __construct($autoContrastToBackgroundColor = '')
@@ -28,6 +30,7 @@ class TMFColorParser
 		$this->forceDarken           = false;
 		$this->forceBrighten         = false;
 		$this->alwaysDrawFontShadows = true;
+		$this->convert               = null;
 	}
 
 	public function getStyledString($string, $match, $col, $wide, $narrow, $caps, $italic, $stripColors)
@@ -52,16 +55,25 @@ class TMFColorParser
 				$colRGB    = $this->get_rgb('#' . $col);
 				$colRGBNew = $this->getContrastCorrectedColor($colRGB);
 				$colNew    = $this->get_hex($colRGBNew);
-				$styles   .= 'color:' . $colNew . ';';
+
+				if ($this->convert[0] != null)
+				{
+					$colNew = $this->convertHex($colNew, $this->convert[0], $this->convert[1]);
+				}
+
+				$styles .= 'color:' . $colNew . ';';
 			}
+
 			if ($italic)
 			{
 				$styles .= 'font-style:italic;';
 			}
+
 			if ($wide)
 			{
 				$styles .= 'font-weight:bold;';
 			}
+
 			if ($narrow)
 			{
 				$styles .= 'letter-spacing: -0.1em;font-size:smaller';
@@ -230,6 +242,16 @@ class TMFColorParser
 	public function autoContrastColor($bgColor)
 	{
 		$this->background = $this->get_rgb($bgColor);
+	}
+	
+	public function replaceHex($oldHex, $newHex)
+	{
+		$this->convert = [$oldHex, $newHex];
+	}
+
+	public function convertHex($str, $oldHex, $newHex)
+	{
+		return str_replace($oldHex, $newHex, $str);
 	}
 
 	public function getContrastCorrectedColor($rgb)
