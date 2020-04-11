@@ -1,11 +1,9 @@
 <?php
 /**
- * TMFColorParser v2.0.0-beta
+ * TMFColorParser v2.0.0
  *
- * @copyright   2017 Charlie Lodder
- * @license     GNU GPL v2 or - at your option - any later version
- *
- * @original    by oorf|fuckfish (fish@stabb.de)
+ * @copyright   2020 Charlie Lodder
+ * @license     MIT
  */
 
 class TMFColorParser
