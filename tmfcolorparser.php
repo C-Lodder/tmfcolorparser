@@ -54,7 +54,7 @@ class TMFColorParser
 				$colRGBNew = $this->getContrastCorrectedColor($colRGB);
 				$colNew    = $this->get_hex($colRGBNew);
 
-				if ($this->convert[0] != null)
+				if ($this->convert !== null && $this->convert[0] !== null)
 				{
 					$colNew = $this->convertHex($colNew, $this->convert[0], $this->convert[1]);
 				}
@@ -573,7 +573,7 @@ class TMFColorParser
 
 		if (($length = strlen($hex)) == 3)
 		{
-			$hex = $hex{0} . $hex{0} . $hex{1} . $hex{1} . $hex{2} . $hex{2};
+			$hex = $hex[0] . $hex[0] . $hex[1] . $hex[1] . $hex[2] . $hex[2];
 			$length = 6;
 		}
 
@@ -582,9 +582,9 @@ class TMFColorParser
 			return null;
 		}
 
-		$rgb['r'] = $hex_array[$hex{0}] * 16 + $hex_array[$hex{1}];
-		$rgb['g'] = $hex_array[$hex{2}] * 16 + $hex_array[$hex{3}];
-		$rgb['b'] = $hex_array[$hex{4}] * 16 + $hex_array[$hex{5}];
+		$rgb['r'] = $hex_array[$hex[0]] * 16 + $hex_array[$hex[1]];
+		$rgb['g'] = $hex_array[$hex[2]] * 16 + $hex_array[$hex[3]];
+		$rgb['b'] = $hex_array[$hex[4]] * 16 + $hex_array[$hex[5]];
 
 		return $rgb;
 	}
