@@ -1,5 +1,5 @@
 /**
- * TMFColorParser v2.0.0
+ * TMFColorParser v2.0.1
  *
  * @copyright   2020 Charlie Lodder
  * @license     MIT
