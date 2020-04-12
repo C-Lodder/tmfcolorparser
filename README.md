@@ -18,5 +18,5 @@ parser.toHTML(trackmaniaName);
 $parser = new TMFColorParser;
 
 $trackmaniaName = '$s$03Dbcs$000|$fffLodder';
-echo $parser.toHTML($trackmaniaName);
+echo $parser->toHTML($trackmaniaName);
 ```
